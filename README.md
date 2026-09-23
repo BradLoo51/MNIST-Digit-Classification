@@ -4,6 +4,9 @@ A web app where user draw a digit on a canvas, which is sent to a PyTorch model 
 
 **Architecture:** Flask serves the static frontend which sends the drawing directly to a separate FastAPI backend. The backend runs the PyTorch model and returns a prediction. A setup is also made for running the backend service in Docker container. The uv.lock venv is using an outdated PyTorch version to compensate on my old GPU (NVIDIA GeForce GTX 1050 3 GB).
 
+<img width="786" height="559" alt="Screenshot of FrontEnd" src="https://github.com/user-attachments/assets/1ba1d665-1d51-4562-851b-2151053e050d" />
+
+
 ## Frontend (Flask)
 
 `main.py` only serves the page – it has no knowledge of the model or prediction logic. It is hosting in `http://localhost:5000`
