@@ -4,9 +4,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import base64
+import uvicorn
 from PIL import Image
 from io import BytesIO
 from torchvision import transforms
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / "training" / "mnist_model.pt"
 
 app = FastAPI()
 
@@ -21,7 +26,7 @@ class ImagePayload(BaseModel):
     image: str
 
 model = ImageClassifier()
-with open("./training/mnist_model.pt", "rb") as model_file:
+with open(MODEL_PATH, "rb") as model_file:
     model.load_state_dict(torch.load(model_file))
 model.eval()
 
@@ -46,4 +51,6 @@ async def predict(payload: ImagePayload):
     return {
         "prediction": pred
     }
-        
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -9,11 +9,11 @@ A web app where user draw a digit on a canvas, which is sent to a PyTorch model 
 
 ## Frontend (Flask)
 
-`main.py` only serves the page – it has no knowledge of the model or prediction logic. It is hosting in `http://localhost:5000`
+`frontend.py` only serves the page – it has no knowledge of the model or prediction logic. It is hosting in `http://localhost:5000`
 
 Run it with:
 ```bash
-python main.py
+python src/frontend/frontend.py
 ```
 
 ---
@@ -24,7 +24,7 @@ Loads the PyTorch model once at startup and exposes a `/predict` POST endpoint
 
 Run it locally with:
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 8000
+python src/backend/backend.py
 ```
 
 ---
